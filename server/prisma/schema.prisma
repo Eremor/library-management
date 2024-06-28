@@ -19,6 +19,7 @@ model User {
   email String @unique
   password String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   role Role @default(USER)
   loans Loan[]
   @@map("users")
@@ -29,7 +30,7 @@ model Book {
   bookTitle String
   author String
   publicYear Int
-  gener String
+  gener String[]
   status Boolean
   loans Loan[]
   @@map("books")

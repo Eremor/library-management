@@ -12,6 +12,7 @@ export class UserResponse implements User {
   @Exclude()
   createdAt: Date;
 
+  updatedAt: Date;
   role: Role;
 
   constructor(user: User) {

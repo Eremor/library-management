@@ -4,11 +4,12 @@ import {
   Controller,
   Get,
   Param,
+  Patch,
   Post,
   UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto';
+import { CreateUserDto, UpdateUserDto } from './dto';
 import { UserResponse } from './responses';
 
 @Controller('user')
@@ -26,6 +27,13 @@ export class UserController {
   @Get(':email')
   async findOneUserByEmail(@Param('email') email: string) {
     const user = await this.userService.findOneByEmail(email);
+    return new UserResponse(user);
+  }
+
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Patch(':id')
+  async updateUser(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+    const user = await this.userService.update(id, dto);
     return new UserResponse(user);
   }
 }

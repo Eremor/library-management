@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { genSaltSync, hashSync } from 'bcrypt';
 import { Role, User } from '@prisma/client';
 import { PrismaService } from '@prisma/prisma.service';
+import { UpdateUserDto } from './dto';
 
 @Injectable()
 export class UserService {
@@ -23,6 +24,18 @@ export class UserService {
     return this.prismaService.user.findUnique({
       where: {
         email,
+      },
+    });
+  }
+
+  update(id: string, dto: UpdateUserDto) {
+    return this.prismaService.user.update({
+      where: {
+        id,
+      },
+      data: {
+        userName: dto.userName,
+        email: dto.email,
       },
     });
   }
