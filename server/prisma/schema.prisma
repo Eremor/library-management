@@ -27,11 +27,11 @@ model User {
 
 model Book {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  bookTitle String
+  title String
   author String
   publicYear Int
-  gener String[]
-  status Boolean
+  genres String[]
+  status Status @default(AVAILABLE)
   loans Loan[]
   @@map("books")
 }
@@ -50,4 +50,9 @@ model Loan {
 enum Role {
   ADMIN
   USER
+}
+
+enum Status {
+  AVAILABLE
+  ISSUED
 }
