@@ -4,6 +4,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { BookModule } from './book/book.module';
+import { LoanModule } from './loan/loan.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { BookModule } from './book/book.module';
     AuthModule,
     BookModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    LoanModule,
   ],
 })
 export class AppModule {}

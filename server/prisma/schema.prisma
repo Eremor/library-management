@@ -43,7 +43,7 @@ model Loan {
   userId String @db.ObjectId
   user User @relation(fields: [userId], references: [id])
   issueDate DateTime
-  returnDate DateTime
+  returnDate DateTime?
   @@map("loans")
 }
 
