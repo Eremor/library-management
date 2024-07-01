@@ -1,12 +1,12 @@
-import './App.css'
+import { Button } from '@mui/material';
 
-function App() {
-
+export function App() {
   return (
     <>
       Hello world
+      <Button variant="contained">
+        Button
+      </Button>
     </>
-  )
+  );
 }
-
-export default App
