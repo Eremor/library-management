@@ -4,6 +4,7 @@ import { ThemeProvider } from '@emotion/react';
 
 import { App } from 'app/App';
 import { theme } from 'app/providers/ThemeProvider';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 
 const container = document.getElementById('root');
 
@@ -15,8 +16,10 @@ const root = createRoot(container);
 
 root.render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </ErrorBoundary>
   </StrictMode>,
 );
