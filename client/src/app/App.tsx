@@ -1,12 +1,11 @@
-import { Button } from '@mui/material';
+import { Suspense } from 'react';
+import { CircularProgress } from '@mui/material';
+import { AppRouter } from './providers/router';
 
 export function App() {
   return (
-    <>
-      Hello world
-      <Button variant="contained">
-        Button
-      </Button>
-    </>
+    <Suspense fallback={<CircularProgress color="secondary" />}>
+      <AppRouter />
+    </Suspense>
   );
 }

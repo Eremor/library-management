@@ -48,6 +48,7 @@ module.exports = {
     'no-console': ['error', {
       'allow': ['warn', 'error']
     }],
-    'no-restricted-globals': 'warn'
+    'no-restricted-globals': 'warn',
+    'no-shadow': 'off'
   },
 }

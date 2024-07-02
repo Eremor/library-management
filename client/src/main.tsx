@@ -5,6 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 import { App } from 'app/App';
 import { theme } from 'app/providers/ThemeProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 
@@ -16,10 +17,12 @@ const root = createRoot(container);
 
 root.render(
   <StrictMode>
-    <ErrorBoundary>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </ErrorBoundary>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </ErrorBoundary>
+    </BrowserRouter>
   </StrictMode>,
 );
