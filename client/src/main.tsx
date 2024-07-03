@@ -1,11 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 
-import { App } from 'app/App';
 import { theme } from 'app/providers/ThemeProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
-import { BrowserRouter } from 'react-router-dom';
+import { StoreProvider } from 'app/providers/StoreProvider';
+import { App } from 'app/App';
 
 const container = document.getElementById('root');
 
@@ -18,11 +19,13 @@ const root = createRoot(container);
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <ErrorBoundary>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </ErrorBoundary>
+      <StoreProvider>
+        <ErrorBoundary>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </ErrorBoundary>
+      </StoreProvider>
     </BrowserRouter>
   </StrictMode>,
 );
