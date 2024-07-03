@@ -1,3 +1,3 @@
 export {
-  theme,
-} from './config/theme';
+  ThemeProvider,
+} from './ui/ThemeProvider';
