@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ThemeProvider as MUIThemeProvider } from '@emotion/react';
+import { ThemeProvider as MuiThemeProvider } from '@emotion/react';
 import { theme } from '../config/theme';
 
 interface ThemeProviderProps {
@@ -8,9 +8,9 @@ interface ThemeProviderProps {
 
 function ThemeProvider({ children } : ThemeProviderProps) {
   return (
-    <MUIThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       {children}
-    </MUIThemeProvider>
+    </MuiThemeProvider>
   );
 }
 

@@ -1,11 +1,16 @@
 import { Suspense } from 'react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, CssBaseline } from '@mui/material';
+import { Navbar } from 'widgets/Navbar';
 import { AppRouter } from './providers/router';
 
 export function App() {
   return (
-    <Suspense fallback={<CircularProgress color="secondary" />}>
-      <AppRouter />
-    </Suspense>
+    <>
+      <CssBaseline />
+      <Navbar />
+      <Suspense fallback={<CircularProgress color="secondary" />}>
+        <AppRouter />
+      </Suspense>
+    </>
   );
 }

@@ -49,6 +49,7 @@ module.exports = {
       'allow': ['warn', 'error']
     }],
     'no-restricted-globals': 'warn',
-    'no-shadow': 'off'
+    'no-shadow': 'off',
+    'react/jsx-props-no-spreading': 'off'
   },
 }

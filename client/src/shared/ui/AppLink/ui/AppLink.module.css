@@ -1,0 +1,21 @@
+.link {
+  padding: 4px 7px;
+  text-decoration: none;
+}
+
+.primary {
+  color: #833D88;
+}
+
+.secondary {
+  color: #46316D;
+}
+
+.light {
+  color: #fff;
+}
+
+.light:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
