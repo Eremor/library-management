@@ -13,12 +13,12 @@ const Navbar = memo(() => (
     <HideOnScroll>
       <AppBar>
         <Container maxWidth="xl">
-          <Toolbar sx={{ display: 'flex', width: '100%' }}>
+          <Toolbar disableGutters>
             <Logo />
             <Stack
               direction="row"
-              spacing={4}
-              ml={10}
+              spacing={{ xs: 1, md: 4 }}
+              ml={{ xs: 3, md: 10 }}
             >
               <AppLink to={RoutePath.main}>
                 Книги

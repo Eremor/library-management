@@ -11,7 +11,6 @@ const Logo = memo(() => (
       fontWeight: '700',
       color: 'inherit',
       textDecoration: 'none',
-      order: { xs: 1, md: 0 },
     }}
   >
     Lib-M
