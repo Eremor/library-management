@@ -5,7 +5,15 @@ function PageError() {
     location.reload();
   };
   return (
-    <Container maxWidth={false}>
+    <Container
+      maxWidth="xl"
+      sx={{
+        marginTop: 20,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <Typography>
         Произошла непредвиденная ошибка
       </Typography>
