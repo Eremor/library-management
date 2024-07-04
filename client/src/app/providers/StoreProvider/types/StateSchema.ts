@@ -1,7 +1,9 @@
 import { AxiosInstance } from 'axios';
 
-export interface StateSchema {
+import { UserSchema } from 'entities/User';
 
+export interface StateSchema {
+  user: UserSchema;
 }
 
 export interface ThunkExtraArg {
