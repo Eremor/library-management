@@ -1,9 +1,10 @@
 import { memo } from 'react';
+import { Page } from 'widgets/Page';
 
 const ProfilePage = memo(() => (
-  <div>
+  <Page>
     Profile page
-  </div>
+  </Page>
 ));
 
 export default ProfilePage;

@@ -1,9 +1,11 @@
 import { memo } from 'react';
 
+import { Page } from 'widgets/Page';
+
 const BooksPage = memo(() => (
-  <div>
+  <Page>
     Books page
-  </div>
+  </Page>
 ));
 
 export default BooksPage;

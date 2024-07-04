@@ -1,9 +1,10 @@
 import { memo } from 'react';
+import { Page } from 'widgets/Page';
 
 const NotFoundPage = memo(() => (
-  <div>
+  <Page>
     Страница не найдена
-  </div>
+  </Page>
 ));
 
 export { NotFoundPage };
