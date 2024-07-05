@@ -1,17 +1,33 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+
+import { userReducer } from 'entities/User';
+
 import { baseApi } from 'shared/api';
-import { rootReducers } from './rootReducer';
 
-export const store = configureStore({
-  reducer: rootReducers,
-  devTools: import.meta.env.DEV,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    thunk: {
-      extraArgument: {
-        api: baseApi,
+import { StateSchema } from '../types/StateSchema';
+import { createReducerManager } from './reducerManager';
+
+export const createReduxStore = (asyncReducers: ReducersMapObject<StateSchema>) => {
+  const rootReducers: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
+    user: userReducer,
+  };
+
+  const reducerManager = createReducerManager(rootReducers);
+
+  const store = configureStore({
+    reducer: reducerManager.reduce as Reducer<StateSchema>,
+    devTools: import.meta.env.DEV,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      thunk: {
+        extraArgument: {
+          api: baseApi,
+        },
       },
-    },
-  }),
-});
+    }),
+  });
 
-export type AppDispatch = typeof store.dispatch;
+  return store;
+};
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

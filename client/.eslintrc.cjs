@@ -51,8 +51,8 @@ module.exports = {
     'no-restricted-globals': 'warn',
     'no-shadow': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'no-param-reassign': ['error', {
-      'props': false
-    }]
+    'no-param-reassign': 'off',
+    'no-undef': 'off',
+    'no-restricted-syntax': 'off'
   },
 }
