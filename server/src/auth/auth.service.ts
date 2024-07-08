@@ -1,8 +1,10 @@
 import {
+  BadRequestException,
   ConflictException,
+  HttpException,
+  HttpStatus,
   Injectable,
   Logger,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { UserService } from '@user/user.service';
@@ -28,6 +30,12 @@ export class AuthService {
       return this.userService.save(dto);
     } catch (error) {
       this.logger.error(error);
+      throw new HttpException({
+        status: HttpStatus.CONFLICT,
+        error: 'A user with this email is already registered',
+      }, HttpStatus.CONFLICT, {
+        cause: error
+      })
     }
   }
 
@@ -36,12 +44,18 @@ export class AuthService {
       const user: User = await this.userService.findOneByEmail(dto.email);
 
       if (!user || !compareSync(dto.password, user.password)) {
-        throw new UnauthorizedException('Invalid email or password');
+        throw new BadRequestException('Invalid email or password');
       }
 
       return user;
     } catch (error) {
       this.logger.error(error);
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: 'Invalid email or password'
+      }, HttpStatus.BAD_REQUEST, {
+        cause: error
+      })
     }
   }
 }

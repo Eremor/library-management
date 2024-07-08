@@ -1,6 +1,8 @@
 import { BookService } from '@book/book.service';
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Injectable,
   Logger,
   NotFoundException,
@@ -53,7 +55,12 @@ export class LoanService {
       return { loan, user, book };
     } catch (error) {
       this.logger.error(error);
-      return error;
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: "Couldn't add loan"
+      }, HttpStatus.BAD_REQUEST, {
+        cause: error
+      })
     }
   }
 }
