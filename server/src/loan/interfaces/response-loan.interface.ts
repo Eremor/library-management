@@ -3,6 +3,6 @@ import { UserResponse } from '@user/responses';
 
 export interface ResponseLoan {
   loan: Loan;
-  user: UserResponse;
-  book: Book;
+  user: DeepPartial<UserResponse>;
+  book: DeepPartial<Book>;
 }

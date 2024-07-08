@@ -30,12 +30,16 @@ export class AuthService {
       return this.userService.save(dto);
     } catch (error) {
       this.logger.error(error);
-      throw new HttpException({
-        status: HttpStatus.CONFLICT,
-        error: 'A user with this email is already registered',
-      }, HttpStatus.CONFLICT, {
-        cause: error
-      })
+      throw new HttpException(
+        {
+          status: HttpStatus.CONFLICT,
+          error: 'A user with this email is already registered',
+        },
+        HttpStatus.CONFLICT,
+        {
+          cause: error,
+        },
+      );
     }
   }
 
@@ -50,12 +54,16 @@ export class AuthService {
       return user;
     } catch (error) {
       this.logger.error(error);
-      throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: 'Invalid email or password'
-      }, HttpStatus.BAD_REQUEST, {
-        cause: error
-      })
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Invalid email or password',
+        },
+        HttpStatus.BAD_REQUEST,
+        {
+          cause: error,
+        },
+      );
     }
   }
 }

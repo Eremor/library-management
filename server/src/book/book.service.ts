@@ -1,4 +1,10 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
 import { PrismaService } from '@prisma/prisma.service';
 import { Book, Status } from '@prisma/client';
 import { CreateBookDto } from './dto';
@@ -29,12 +35,16 @@ export class BookService {
       return newBook;
     } catch (error) {
       this.logger.error(error);
-      throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: "Couldn't add book"
-      }, HttpStatus.BAD_REQUEST, {
-        cause: error
-      })
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "Couldn't add book",
+        },
+        HttpStatus.BAD_REQUEST,
+        {
+          cause: error,
+        },
+      );
     }
   }
 
@@ -53,12 +63,16 @@ export class BookService {
       return book;
     } catch (error) {
       this.logger.error(error);
-      throw new HttpException({
-        status: HttpStatus.NOT_FOUND,
-        error: "couldn't find the book"
-      }, HttpStatus.NOT_FOUND, {
-        cause: error
-      })
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "couldn't find the book",
+        },
+        HttpStatus.NOT_FOUND,
+        {
+          cause: error,
+        },
+      );
     }
   }
 
@@ -73,12 +87,16 @@ export class BookService {
       return bookList;
     } catch (error) {
       this.logger.error(error);
-      throw new HttpException({
-        status: HttpStatus.NOT_FOUND,
-        error: "couldn't find books"
-      }, HttpStatus.NOT_FOUND, {
-        cause: error
-      })
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "couldn't find books",
+        },
+        HttpStatus.NOT_FOUND,
+        {
+          cause: error,
+        },
+      );
     }
   }
 
@@ -104,12 +122,16 @@ export class BookService {
       return book;
     } catch (error) {
       this.logger.error(error);
-      throw new HttpException({
-        status: HttpStatus.NOT_FOUND,
-        error: "couldn't update the book"
-      }, HttpStatus.NOT_FOUND, {
-        cause: error
-      })
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "couldn't update the book",
+        },
+        HttpStatus.NOT_FOUND,
+        {
+          cause: error,
+        },
+      );
     }
   }
 
