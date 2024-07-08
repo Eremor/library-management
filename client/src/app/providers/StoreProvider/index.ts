@@ -5,6 +5,8 @@ export {
 export type {
   StateSchema,
   ThunkConfig,
+  StoreWithReducerManager,
+  StateSchemaKey,
 } from './types/StateSchema';
 
 export type {

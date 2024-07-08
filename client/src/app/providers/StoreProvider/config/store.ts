@@ -4,7 +4,7 @@ import { userReducer } from 'entities/User';
 
 import { baseApi } from 'shared/api';
 
-import { StateSchema } from '../types/StateSchema';
+import { StateSchema, StoreWithReducerManager } from '../types/StateSchema';
 import { createReducerManager } from './reducerManager';
 
 export const createReduxStore = (asyncReducers: ReducersMapObject<StateSchema>) => {
@@ -17,7 +17,7 @@ export const createReduxStore = (asyncReducers: ReducersMapObject<StateSchema>) 
 
   const store = configureStore({
     reducer: reducerManager.reduce as Reducer<StateSchema>,
-    devTools: import.meta.env.DEV,
+    devTools: true,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: {
         extraArgument: {
@@ -27,7 +27,9 @@ export const createReduxStore = (asyncReducers: ReducersMapObject<StateSchema>) 
     }),
   });
 
-  return store;
+  (store as StoreWithReducerManager).reducerManager = reducerManager;
+
+  return (store as StoreWithReducerManager);
 };
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

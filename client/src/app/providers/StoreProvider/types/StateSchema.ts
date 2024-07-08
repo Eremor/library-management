@@ -1,5 +1,5 @@
 import {
-  EnhancedStore, Reducer, ReducersMapObject, UnknownAction,
+  EnhancedStore, Reducer, ReducersMapObject, StoreEnhancer, ThunkDispatch, Tuple, UnknownAction,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
@@ -9,7 +9,7 @@ import { LoginSchema } from 'features/LoginUser';
 
 export interface StateSchema {
   user: UserSchema;
-  login: LoginSchema;
+  login?: LoginSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -26,9 +26,9 @@ export interface ReducerManager {
   getMountedReducers: () => MountedReducers;
 }
 
-export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
-  reducerManager: ReducerManager;
-}
+// export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
+//   reducerManager: ReducerManager;
+// }
 
 export interface ThunkExtraArg {
   api: AxiosInstance
@@ -38,4 +38,24 @@ export interface ThunkConfig<T> {
   extra: ThunkExtraArg;
   state: StateSchema;
   rejectValue: T;
+}
+
+type StoreType = EnhancedStore<
+  StateSchema,
+  UnknownAction,
+  Tuple<[
+    StoreEnhancer<{
+      dispatch: ThunkDispatch<
+        StateSchema, {
+          api: AxiosInstance;
+        },
+        UnknownAction
+      >;
+    }>,
+    StoreEnhancer
+  ]>
+>
+
+export interface StoreWithReducerManager extends StoreType {
+  reducerManager: ReducerManager;
 }

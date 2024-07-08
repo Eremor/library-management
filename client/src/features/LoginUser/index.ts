@@ -19,4 +19,4 @@ export {
 
 export {
   LoginModal,
-} from './ui/LoginModal';
+} from './ui/LoginModal/LoginModal';

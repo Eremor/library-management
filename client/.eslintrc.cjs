@@ -53,6 +53,9 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-param-reassign': 'off',
     'no-undef': 'off',
-    'no-restricted-syntax': 'off'
+    'no-restricted-syntax': 'off',
+    'react/jsx-no-useless-fragment': ['error', {
+      'allowExpressions': true
+    }]
   },
 }

@@ -19,7 +19,7 @@ export const requestLogin = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      const response = await extra.api.post('/auth/login', loginData);
+      const response = await extra.api.post<User>('/auth/login', loginData);
 
       if (!response.data) {
         throw new Error();
