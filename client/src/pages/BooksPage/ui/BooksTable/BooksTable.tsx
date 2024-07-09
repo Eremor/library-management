@@ -1,7 +1,16 @@
 import { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+  Paper,
+  Skeleton,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from '@mui/material';
 
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
@@ -9,7 +18,12 @@ import { useAppDispatch } from 'shared/lib/hooks';
 
 import { booksPageReducer } from '../../model/slice/booksPageSlice';
 import { fetchAllBooks } from '../../model/services/fetchAllBooks/fetchAllBooks';
-import { getBooksPageData, getBooksPageError } from '../../model/selectors/booksPageSelector';
+import {
+  getBooksPageData,
+  getBooksPageError,
+  getBooksPageIsLoading,
+} from '../../model/selectors/booksPageSelector';
+import { BooksTableRow } from '../BooksTableRow/BooksTableRow';
 
 const reducers: ReducersList = {
   booksPage: booksPageReducer,
@@ -18,7 +32,7 @@ const reducers: ReducersList = {
 const BooksTable = memo(() => {
   const dispatch = useAppDispatch();
   const books = useSelector(getBooksPageData);
-  // const isLoading = useSelector(getBooksPageIsLoading);
+  const isLoading = useSelector(getBooksPageIsLoading);
   const error = useSelector(getBooksPageError);
 
   useEffect(() => {
@@ -28,7 +42,7 @@ const BooksTable = memo(() => {
   return (
     <DynamicModuleLoader
       reducers={reducers}
-      removeAfterUnmount={false}
+      removeAfterUnmount
     >
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }}>
@@ -39,25 +53,45 @@ const BooksTable = memo(() => {
               <TableCell align="right">Год публикации</TableCell>
               <TableCell align="right">Жанры</TableCell>
               <TableCell align="right">Статус аренды</TableCell>
-              <TableCell align="right" />
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
-            {error && (
-              <TableRow>
-                <TableCell>{error}</TableCell>
-              </TableRow>
-            )}
             {books?.map((book) => (
-              <TableRow key={book.id}>
-                <TableCell>
-                  {book.title}
-                </TableCell>
-              </TableRow>
+              <BooksTableRow book={book} key={book.id} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      {error && (
+        <Typography
+          variant="subtitle1"
+          color="red"
+        >
+          {error}
+        </Typography>
+      )}
+      {isLoading && (
+        <Stack
+          gap={1}
+          sx={{
+            width: '100%',
+          }}
+        >
+          <Skeleton
+            variant="rectangular"
+            height={60}
+          />
+          <Skeleton
+            variant="rectangular"
+            height={60}
+          />
+          <Skeleton
+            variant="rectangular"
+            height={60}
+          />
+        </Stack>
+      )}
     </DynamicModuleLoader>
   );
 });
