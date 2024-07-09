@@ -1,3 +1,3 @@
 export {
-  InputText
-} from './ui/InputText'
+  InputText,
+} from './ui/InputText';

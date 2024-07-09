@@ -18,7 +18,7 @@ const LoginModal = memo((props: LoginModalProps) => {
       modalTitle="Авторизация"
     >
       <Box
-        width='100%'
+        width="100%"
       >
         <LoginForm onSuccess={onClose} />
       </Box>

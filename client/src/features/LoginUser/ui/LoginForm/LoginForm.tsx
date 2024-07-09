@@ -1,14 +1,16 @@
 import { memo, useCallback } from 'react';
 import { Controller, DefaultValues, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { Button, TextField, Typography } from '@mui/material';
+import {
+  Button, CircularProgress, TextField, Typography,
+} from '@mui/material';
 
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { useAppDispatch } from 'shared/lib/hooks';
 
 import { loginReducer } from '../../model/slice/loginSlice';
 import { requestLogin } from '../../model/services/requestLogin/requestLogin';
-import { getLoginError } from '../../model/selectors/loginSelector';
+import { getLoginError, getLoginIsLoading } from '../../model/selectors/loginSelector';
 
 export interface LoginFormProps {
   onSuccess: () => void;
@@ -25,23 +27,24 @@ interface FormValues {
 
 const defaultValues: DefaultValues<FormValues> = {
   email: '',
-  password: ''
-}
+  password: '',
+};
 
 const LoginForm = memo(({ onSuccess }: LoginFormProps) => {
-  const { handleSubmit, control, reset,  } = useForm<FormValues>({
-    defaultValues
-  })
+  const { handleSubmit, control, reset } = useForm<FormValues>({
+    defaultValues,
+  });
   const dispatch = useAppDispatch();
-  const error = useSelector(getLoginError)
+  const error = useSelector(getLoginError);
+  const isLoading = useSelector(getLoginIsLoading);
 
   const onLoginSubmit = useCallback(async (data: FormValues) => {
-    const result = await dispatch(requestLogin(data))
+    const result = await dispatch(requestLogin(data));
     if (result.meta.requestStatus === 'fulfilled') {
       onSuccess();
       reset();
     }
-  }, [onSuccess, dispatch])
+  }, [onSuccess, dispatch]);
 
   return (
     <DynamicModuleLoader
@@ -54,15 +57,15 @@ const LoginForm = memo(({ onSuccess }: LoginFormProps) => {
           display: 'flex',
           flexDirection: 'column',
           gap: '15px',
-          width: '100%'
+          width: '100%',
         }}
       >
         <Controller
-          name='email'
+          name="email"
           control={control}
           render={({
             field: { value, onChange },
-            fieldState: { error }
+            fieldState: { error },
           }) => (
             <TextField
               helperText={error ? error.message : null}
@@ -72,15 +75,16 @@ const LoginForm = memo(({ onSuccess }: LoginFormProps) => {
               required
               label="Укажите свой email"
               variant="standard"
+              autoComplete="off"
             />
           )}
         />
         <Controller
-          name='password'
+          name="password"
           control={control}
           render={({
             field: { value, onChange },
-            fieldState: { error }
+            fieldState: { error },
           }) => (
             <TextField
               helperText={error ? error.message : null}
@@ -90,33 +94,45 @@ const LoginForm = memo(({ onSuccess }: LoginFormProps) => {
               required
               label="Пароль"
               variant="standard"
+              autoComplete="off"
             />
           )}
         />
         {error && (
           <Typography
-            variant='subtitle1'
+            variant="subtitle1"
             sx={{
               position: 'absolute',
               bottom: '50px',
-              color: '#f30e0e'
+              color: '#f30e0e',
             }}
           >
             {error}
           </Typography>
         )}
+        {isLoading && (
+          <CircularProgress
+            color="secondary"
+            sx={{
+              position: 'absolute',
+              bottom: '45px',
+              left: 'calc(50% - 20px)',
+            }}
+          />
+        )}
         <Button
-          type='submit'
-          variant='contained'
+          type="submit"
+          variant="contained"
           sx={{
-            mt: 5
+            mt: 5,
           }}
+          disabled={isLoading}
         >
           Войти
         </Button>
       </form>
     </DynamicModuleLoader>
-  )
+  );
 });
 
 export default LoginForm;

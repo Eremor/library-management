@@ -1,6 +1,6 @@
-import { memo } from "react";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import { TextField } from "@mui/material";
+import { memo } from 'react';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import { TextField } from '@mui/material';
 
 interface InputTextProps {
   name: string;
@@ -14,15 +14,15 @@ const InputText = memo((props: InputTextProps) => {
     name,
     control,
     label,
-    isRequired = false
-  } = props
+    isRequired = false,
+  } = props;
   return (
     <Controller
       name={name}
       control={control}
       render={({
         field: { onChange, value },
-        fieldState: { error }
+        fieldState: { error },
       }) => (
         <TextField
           helperText={error ? error.message : null}
@@ -38,4 +38,4 @@ const InputText = memo((props: InputTextProps) => {
   );
 });
 
-export {InputText};
+export { InputText };
