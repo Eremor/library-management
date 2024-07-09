@@ -8,10 +8,13 @@ import { UserSchema } from 'entities/User';
 
 import { LoginSchema } from 'features/LoginUser';
 
+import { BooksPageSchema } from 'pages/BooksPage';
+
 export interface StateSchema {
   user: UserSchema;
   login?: LoginSchema;
   book?: BookSchema;
+  booksPage?: BooksPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;
