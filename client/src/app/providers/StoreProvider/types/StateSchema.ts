@@ -3,6 +3,7 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
+import { BookSchema } from 'entities/Book';
 import { UserSchema } from 'entities/User';
 
 import { LoginSchema } from 'features/LoginUser';
@@ -10,6 +11,7 @@ import { LoginSchema } from 'features/LoginUser';
 export interface StateSchema {
   user: UserSchema;
   login?: LoginSchema;
+  book?: BookSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
