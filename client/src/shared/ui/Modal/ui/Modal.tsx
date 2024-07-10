@@ -46,6 +46,11 @@ const Modal = memo((props: ModalProps) => {
         <Typography
           variant="h3"
           mb={3}
+          fontSize={{
+            xs: '1.5rem',
+            md: '2.5rem',
+          }}
+          textAlign="center"
         >
           {modalTitle}
         </Typography>

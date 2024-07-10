@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Book } from 'entities/Book';
 import { BooksPageSchema } from '../types/booksPageSchema';
 import { fetchAllBooks } from '../services/fetchAllBooks/fetchAllBooks';
+import { createNewBook } from '../services/createNewBook/createNewBook';
 
 const initialState: BooksPageSchema = {
   isLoading: false,
@@ -24,6 +25,17 @@ const booksPageSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(fetchAllBooks.rejected, (state, action: PayloadAction<string | undefined>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(createNewBook.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(createNewBook.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(createNewBook.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.isLoading = false;
         state.error = action.payload;
       });
