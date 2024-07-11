@@ -4,6 +4,7 @@ import {
 import { AxiosInstance } from 'axios';
 
 import { BookSchema } from 'entities/Book';
+import { LoanSchema } from 'entities/Loan';
 import { UserSchema } from 'entities/User';
 
 import { LoginSchema } from 'features/LoginUser';
@@ -14,7 +15,8 @@ export interface StateSchema {
   user: UserSchema;
   login?: LoginSchema;
   book?: BookSchema;
-  booksPage?: BooksPageSchema
+  booksPage?: BooksPageSchema;
+  loan?: LoanSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
