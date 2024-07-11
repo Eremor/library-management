@@ -41,8 +41,9 @@ export class LoanService {
 
       const loan = await this.prismaService.loan.create({
         data: {
-          issueDate: new Date(),
+          giveDate: new Date(),
           returnDate: null,
+          active: true,
           bookId,
           userId,
         },
@@ -167,6 +168,7 @@ export class LoanService {
         },
         data: {
           returnDate: new Date(),
+          active: false,
         },
       });
 
