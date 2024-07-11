@@ -13,6 +13,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import { getAuthData } from 'entities/User';
+
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { useAppDispatch } from 'shared/lib/hooks';
 
@@ -31,6 +33,7 @@ const reducers: ReducersList = {
 
 const BooksTable = memo(() => {
   const dispatch = useAppDispatch();
+  const user = useSelector(getAuthData);
   const books = useSelector(getBooksPageData);
   const isLoading = useSelector(getBooksPageIsLoading);
   const error = useSelector(getBooksPageError);
@@ -45,15 +48,24 @@ const BooksTable = memo(() => {
       removeAfterUnmount
     >
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }}>
+        <Table sx={{ minWidth: 800 }}>
           <TableHead>
             <TableRow>
-              <TableCell>Название книги</TableCell>
+              <TableCell
+                sx={{
+                  width: { sm: '350px' },
+                }}
+              >
+                Название книги
+              </TableCell>
               <TableCell align="right">Автор</TableCell>
               <TableCell align="right">Год публикации</TableCell>
               <TableCell align="right">Жанры</TableCell>
               <TableCell align="right">Статус аренды</TableCell>
-              <TableCell />
+              <TableCell sx={{
+                width: { sm: user ? '200px' : '300px' },
+              }}
+              />
             </TableRow>
           </TableHead>
           <TableBody>
