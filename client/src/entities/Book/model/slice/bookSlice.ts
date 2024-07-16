@@ -1,5 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { BookSchema } from '../types/bookSchema';
+import { Book } from '../types/book';
+
+import { fetchBookById } from '../services/fetchBookById/fetchBookById';
 
 const initialState: BookSchema = {
   isLoading: false,
@@ -11,7 +15,21 @@ const bookSlice = createSlice({
   name: 'book',
   initialState,
   reducers: {},
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBookById.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(fetchBookById.fulfilled, (state, action: PayloadAction<Book>) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchBookById.rejected, (state, action: PayloadAction<string | undefined>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
 export const { actions: bookActions } = bookSlice;

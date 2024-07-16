@@ -20,7 +20,7 @@ const loanSlice = createSlice({
         state.error = undefined;
         state.isLoading = true;
       })
-      .addCase(fetchLoanByBookId.fulfilled, (state, action: PayloadAction<Loan>) => {
+      .addCase(fetchLoanByBookId.fulfilled, (state, action: PayloadAction<Loan | undefined>) => {
         state.isLoading = false;
         state.data = action.payload;
       })

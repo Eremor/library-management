@@ -5,7 +5,7 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Loan } from '../../types/loan';
 
 export const fetchLoanByBookId = createAsyncThunk<
-  Loan,
+  Loan | undefined,
   string,
   ThunkConfig<string>
 >(
@@ -21,7 +21,7 @@ export const fetchLoanByBookId = createAsyncThunk<
       const response = await extra.api.get<Loan>(`/loan/${bookId}`);
 
       if (!response.data) {
-        throw new Error();
+        return undefined;
       }
 
       return response.data;

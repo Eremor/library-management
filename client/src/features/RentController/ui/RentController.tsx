@@ -8,10 +8,11 @@ import { BookStatus } from 'entities/Book';
 interface RentControllerProps {
   bookId: string;
   status: BookStatus;
+  tenantId?: string;
 }
 
 const RentController = memo((props: RentControllerProps) => {
-  const { bookId, status } = props;
+  const { bookId, tenantId, status } = props;
   const user = useSelector(getAuthData);
 
   let content;
@@ -22,7 +23,7 @@ const RentController = memo((props: RentControllerProps) => {
         {`Авторизуйтесь, чтобы арендовать книгу ${bookId}`}
       </Typography>
     );
-  } else if (status === 'AVAILABLE') {
+  } else if (status === BookStatus.AVAILABLE) {
     content = (
       <Button variant="outlined">
         Взять в аренду
@@ -30,7 +31,10 @@ const RentController = memo((props: RentControllerProps) => {
     );
   } else {
     content = (
-      <Button variant="contained">
+      <Button
+        variant="contained"
+        disabled={user.id !== tenantId}
+      >
         Сдать книгу
       </Button>
     );

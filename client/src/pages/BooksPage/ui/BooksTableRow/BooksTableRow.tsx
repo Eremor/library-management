@@ -3,8 +3,8 @@ import { TableCell, TableRow, Typography } from '@mui/material';
 
 import { Book } from 'entities/Book';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink';
+
 import { RoutePath } from 'shared/const';
-import { RentController } from 'features/RentController';
 
 interface BooksTableRowProps {
   book: Book;
@@ -63,12 +63,6 @@ const BooksTableRow = memo((props: BooksTableRowProps) => {
               </Typography>
             )
         }
-      </TableCell>
-      <TableCell>
-        <RentController
-          bookId={book.id}
-          status={book.status}
-        />
       </TableCell>
     </TableRow>
   );

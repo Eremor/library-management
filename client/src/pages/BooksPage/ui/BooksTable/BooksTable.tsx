@@ -13,8 +13,6 @@ import {
   Typography,
 } from '@mui/material';
 
-import { getAuthData } from 'entities/User';
-
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { useAppDispatch } from 'shared/lib/hooks';
 
@@ -33,7 +31,6 @@ const reducers: ReducersList = {
 
 const BooksTable = memo(() => {
   const dispatch = useAppDispatch();
-  const user = useSelector(getAuthData);
   const books = useSelector(getBooksPageData);
   const isLoading = useSelector(getBooksPageIsLoading);
   const error = useSelector(getBooksPageError);
@@ -62,10 +59,6 @@ const BooksTable = memo(() => {
               <TableCell align="right">Год публикации</TableCell>
               <TableCell align="right">Жанры</TableCell>
               <TableCell align="right">Статус аренды</TableCell>
-              <TableCell sx={{
-                width: { sm: user ? '200px' : '300px' },
-              }}
-              />
             </TableRow>
           </TableHead>
           <TableBody>

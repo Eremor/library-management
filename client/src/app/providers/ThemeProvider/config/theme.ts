@@ -16,4 +16,28 @@ export const theme = createTheme({
       default: '#FAF4FB',
     },
   },
+  components: {
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          alignItems: 'center',
+          gap: '5%',
+        },
+        primary: ({ theme }) => ({
+          display: 'flex',
+          flexShrink: 0,
+          maxWidth: '210px',
+          flexGrow: 1,
+          fontSize: '1.5rem',
+          fontWeight: 700,
+          color: `${theme.palette.primary.main}`,
+        }),
+        secondary: {
+          fontSize: '1.2rem',
+          fontWeight: 500,
+        },
+      },
+    },
+  },
 });
