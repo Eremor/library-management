@@ -3,20 +3,22 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
-import { BookSchema } from 'entities/Book';
-import { LoanSchema } from 'entities/Loan';
-import { UserSchema } from 'entities/User';
+import { BooksPageSchema } from 'pages/BooksPage';
+import { LoansPageSchema } from 'pages/LoansPage';
 
 import { LoginSchema } from 'features/LoginUser';
 
-import { BooksPageSchema } from 'pages/BooksPage';
+import { BookSchema } from 'entities/Book';
+import { LoanSchema } from 'entities/Loan';
+import { UserSchema } from 'entities/User';
 
 export interface StateSchema {
   user: UserSchema;
   login?: LoginSchema;
   book?: BookSchema;
-  booksPage?: BooksPageSchema;
   loan?: LoanSchema;
+  booksPage?: BooksPageSchema;
+  loansPage?: LoansPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

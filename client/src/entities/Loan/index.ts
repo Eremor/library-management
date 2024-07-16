@@ -1,5 +1,6 @@
 export type {
   Loan,
+  LoanResponse,
 } from './model/types/loan';
 
 export type {
