@@ -129,6 +129,7 @@ export class LoanService {
       const loan = await this.prismaService.loan
         .findFirst({
           where: {
+            active: true,
             bookId,
           },
         })
