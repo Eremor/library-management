@@ -4,6 +4,7 @@ import { LoanSchema } from '../types/loanSchema';
 import { Loan } from '../types/loan';
 import { fetchLoanByBookId } from '../services/fetchLoanByBookId/fetchLoanByBookId';
 import { updateLoan } from '../services/updateLoan/updateLoan';
+import { addLoan } from '../services/addLoan/addLoan';
 
 const initialState: LoanSchema = {
   isLoading: false,
@@ -38,6 +39,18 @@ const loanSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(updateLoan.rejected, (state, action: PayloadAction<string | undefined>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addLoan.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(addLoan.fulfilled, (state, action: PayloadAction<Loan>) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(addLoan.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.isLoading = false;
         state.error = action.payload;
       });

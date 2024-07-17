@@ -4,7 +4,12 @@ import { Button, Typography } from '@mui/material';
 
 import { getAuthData } from 'entities/User';
 import { BookStatus } from 'entities/Book';
-import { updateLoan, getLoanIsLoading } from 'entities/Loan';
+import {
+  updateLoan,
+  getLoanIsLoading,
+  addLoan,
+  getLoanError,
+} from 'entities/Loan';
 
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Loader } from 'shared/ui/Loader';
@@ -19,13 +24,19 @@ const RentController = memo((props: RentControllerProps) => {
   const { bookId, tenantId, status } = props;
   const dispatch = useAppDispatch();
   const user = useSelector(getAuthData);
-  const isLoadingReturned = useSelector(getLoanIsLoading);
+  const isLoadingLoan = useSelector(getLoanIsLoading);
+  const error = useSelector(getLoanError);
 
   let content;
 
   const rentBook = useCallback(() => {
-
-  }, []);
+    if (user) {
+      dispatch(addLoan({
+        bookId,
+        userId: user.id,
+      }));
+    }
+  }, [bookId, user, dispatch]);
 
   const returnBook = useCallback(() => {
     if (user) {
@@ -39,7 +50,7 @@ const RentController = memo((props: RentControllerProps) => {
   if (!user) {
     content = (
       <Typography variant="inherit">
-        {`Авторизуйтесь, чтобы арендовать книгу ${bookId}`}
+        Авторизуйтесь, чтобы арендовать книгу
       </Typography>
     );
   } else if (status === BookStatus.AVAILABLE) {
@@ -47,7 +58,19 @@ const RentController = memo((props: RentControllerProps) => {
       <Button
         variant="outlined"
         onClick={rentBook}
+        sx={{
+          position: 'relative',
+        }}
       >
+        {isLoadingLoan && (
+          <Loader
+            sx={{
+              position: 'absolute',
+              top: '-1px',
+              left: '-50%',
+            }}
+          />
+        )}
         Взять в аренду
       </Button>
     );
@@ -61,7 +84,7 @@ const RentController = memo((props: RentControllerProps) => {
           position: 'relative',
         }}
       >
-        {isLoadingReturned && (
+        {isLoadingLoan && (
           <Loader
             sx={{
               position: 'absolute',
@@ -78,6 +101,14 @@ const RentController = memo((props: RentControllerProps) => {
   return (
     <>
       {content}
+      {error && (
+        <Typography
+          variant="subtitle1"
+          color="red"
+        >
+          {error}
+        </Typography>
+      )}
     </>
   );
 });

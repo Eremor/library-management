@@ -21,6 +21,10 @@ export {
 } from './model/services/updateLoan/updateLoan';
 
 export {
+  addLoan,
+} from './model/services/addLoan/addLoan';
+
+export {
   getLoanIsLoading,
   getLoanData,
   getLoanError,
