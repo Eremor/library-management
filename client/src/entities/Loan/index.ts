@@ -17,6 +17,10 @@ export {
 } from './model/services/fetchLoanByBookId/fetchLoanByBookId';
 
 export {
+  updateLoan,
+} from './model/services/updateLoan/updateLoan';
+
+export {
   getLoanIsLoading,
   getLoanData,
   getLoanError,

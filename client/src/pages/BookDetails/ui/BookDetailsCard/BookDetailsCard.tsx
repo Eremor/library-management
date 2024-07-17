@@ -12,7 +12,7 @@ import { fetchLoanByBookId, getLoanData } from 'entities/Loan';
 import { useAppDispatch } from 'shared/lib/hooks';
 
 interface BookDetailsCardProps {
-  bookId?: string;
+  bookId: string;
 }
 
 function BookDetailsCard(props: BookDetailsCardProps) {
@@ -22,11 +22,9 @@ function BookDetailsCard(props: BookDetailsCardProps) {
   const loan = useSelector(getLoanData);
 
   useEffect(() => {
-    if (bookId) {
-      dispatch(fetchBookById(bookId));
-      dispatch(fetchLoanByBookId(bookId));
-    }
-  }, []);
+    dispatch(fetchBookById(bookId));
+    dispatch(fetchLoanByBookId(bookId));
+  }, [bookId, dispatch]);
 
   if (!book) {
     return null;

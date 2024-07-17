@@ -18,6 +18,10 @@ const reducers: ReducersList = {
 const BookDetailsPage = memo(() => {
   const { id } = useParams<{ id: string }>();
 
+  if (!id) {
+    return null;
+  }
+
   return (
     <DynamicModuleLoader
       reducers={reducers}
