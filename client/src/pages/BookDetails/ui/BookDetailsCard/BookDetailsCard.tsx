@@ -32,7 +32,7 @@ function BookDetailsCard(props: BookDetailsCardProps) {
 
   return (
     <Card sx={{
-      maxWidth: 700,
+      width: '100%',
       flexGrow: 1,
     }}
     >

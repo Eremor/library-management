@@ -4,6 +4,7 @@ export {
 
 export type {
   Book,
+  UpdateBookData,
 } from './model/types/book';
 
 export type {
@@ -18,6 +19,10 @@ export {
 export {
   fetchBookById,
 } from './model/services/fetchBookById/fetchBookById';
+
+export {
+  updateBook,
+} from './model/services/updateBook/updateBook';
 
 export {
   getBookData,
