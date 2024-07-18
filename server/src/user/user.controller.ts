@@ -24,9 +24,9 @@ export class UserController {
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
-  @Get(':email')
-  async findOneUserByEmail(@Param('email') email: string) {
-    const user = await this.userService.findOneByEmail(email);
+  @Get(':id')
+  async findOneUserById(@Param('id') id: string) {
+    const user = await this.userService.findOneById(id);
     return new UserResponse(user);
   }
 
