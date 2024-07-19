@@ -44,7 +44,7 @@ const LoginForm = memo(({ onSuccess }: LoginFormProps) => {
       onSuccess();
       reset();
     }
-  }, [onSuccess, dispatch]);
+  }, [onSuccess, dispatch, reset]);
 
   return (
     <DynamicModuleLoader

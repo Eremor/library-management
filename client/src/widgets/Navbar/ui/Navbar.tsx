@@ -40,13 +40,6 @@ const Navbar = memo(() => {
         isOpen={isOpenLoginModal}
         onClose={handleCloseLoginModal}
       />
-      <Button
-        variant="text"
-        color="inherit"
-        size="small"
-      >
-        Зарегистрироваться
-      </Button>
     </>
   );
 

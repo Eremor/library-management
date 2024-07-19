@@ -37,7 +37,7 @@ const BooksTable = memo(() => {
 
   useEffect(() => {
     dispatch(fetchAllBooks());
-  }, []);
+  }, [dispatch]);
 
   return (
     <DynamicModuleLoader

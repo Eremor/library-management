@@ -19,7 +19,7 @@ const BooksPage = memo(() => {
 
   const addNewBook = useCallback((newBook: NewBook) => {
     dispatch(createNewBook(newBook));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Page>

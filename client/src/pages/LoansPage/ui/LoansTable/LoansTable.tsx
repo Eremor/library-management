@@ -47,7 +47,7 @@ const LoansTable = memo(() => {
 
   useEffect(() => {
     dispatch(fetchAllLoans());
-  }, []);
+  }, [dispatch]);
 
   const handleChangePage = useCallback((_: unknown, newPage: number) => {
     setPage(newPage);

@@ -12,7 +12,7 @@ const Page = memo(({ children, className }: PageProps) => (
     maxWidth="xl"
     component="main"
     sx={{
-      mt: { xs: 2, md: 5 },
+      mt: { xs: 2, md: 4 },
     }}
   >
     {children}
