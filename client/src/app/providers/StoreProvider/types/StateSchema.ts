@@ -7,6 +7,7 @@ import { BooksPageSchema } from 'pages/BooksPage';
 import { LoansPageSchema } from 'pages/LoansPage';
 
 import { LoginSchema } from 'features/LoginUser';
+import { ProfileSchema } from 'features/EditableProfile';
 
 import { BookSchema } from 'entities/Book';
 import { LoanSchema } from 'entities/Loan';
@@ -17,6 +18,7 @@ export interface StateSchema {
   login?: LoginSchema;
   book?: BookSchema;
   loan?: LoanSchema;
+  profile?: ProfileSchema;
   booksPage?: BooksPageSchema;
   loansPage?: LoansPageSchema;
 }

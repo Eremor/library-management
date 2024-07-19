@@ -1,10 +1,29 @@
 import { memo } from 'react';
-import { Page } from 'widgets/Page';
+import { useParams } from 'react-router-dom';
+import { Container } from '@mui/material';
 
-const ProfilePage = memo(() => (
-  <Page>
-    Profile page
-  </Page>
-));
+import { Page } from 'widgets/Page';
+import { EditableProfileCard } from 'features/EditableProfile';
+
+const ProfilePage = memo(() => {
+  const { id } = useParams<{ id: string }>();
+  return (
+    <Page>
+      <Container
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 3,
+          maxWidth: '700px',
+        }}
+        maxWidth={false}
+      >
+        <EditableProfileCard id={id} />
+      </Container>
+    </Page>
+  );
+});
 
 export default ProfilePage;
