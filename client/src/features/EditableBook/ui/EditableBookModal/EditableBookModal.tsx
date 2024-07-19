@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Stack, TextField } from '@mui/material';
 
@@ -60,6 +60,15 @@ const EditableBookModal = memo((props: EditableBookModalProps) => {
     reset();
     onClose();
   };
+
+  useEffect(() => {
+    reset({
+      title: book.title,
+      author: book.author,
+      publicYear: book.publicYear,
+      genres: book.genres.join(', '),
+    });
+  }, [book, reset]);
 
   return (
     <Modal
