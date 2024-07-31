@@ -28,6 +28,7 @@ export function createReducerManager(
         keysToRemove = [];
       }
 
+      // @ts-expect-error: Наблюдается странное поведение state, он начинает не корректно воспринимать асинхронные редюсеры
       return combinedReducer(state, action);
     },
     add: (key: StateSchemaKey, reducer: Reducer) => {

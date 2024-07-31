@@ -12,7 +12,9 @@ module.exports = {
   ],
   ignorePatterns: [
     'dist',
-    '.eslintrc.cjs'
+    '.eslintrc.cjs',
+    '**/*.test.[tj]s',
+    '**/*.d.ts'
   ],
   parser: '@typescript-eslint/parser',
   plugins: [
