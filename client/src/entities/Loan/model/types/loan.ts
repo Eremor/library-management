@@ -6,7 +6,7 @@ export interface Loan {
   bookId: string;
   userId: string;
   giveDate: Date;
-  returnDate: Date;
+  returnDate: Date | null;
   active: boolean;
 }
 
