@@ -26,9 +26,10 @@ const ProfileCard = memo((props: ProfileCardProps) => {
   if (isLoading) {
     return (
       <Card sx={{
-        width: '100%',
-        flexGrow: 1,
-      }}
+          width: '100%',
+          flexGrow: 1,
+        }}
+        data-testid="ProfileCard.Card"
       >
         <List>
           <ListItem>
@@ -36,6 +37,7 @@ const ProfileCard = memo((props: ProfileCardProps) => {
               variant="rectangular"
               height={48}
               width="100%"
+              data-testid="ProfileCard.Skeleton"
             />
           </ListItem>
           <ListItem>
@@ -43,6 +45,7 @@ const ProfileCard = memo((props: ProfileCardProps) => {
               variant="rectangular"
               height={48}
               width="100%"
+              data-testid="ProfileCard.Skeleton"
             />
           </ListItem>
         </List>
@@ -52,15 +55,17 @@ const ProfileCard = memo((props: ProfileCardProps) => {
 
   return (
     <Card sx={{
-      width: '100%',
-      flexGrow: 1,
-    }}
+        width: '100%',
+        flexGrow: 1,
+      }}
+      data-testid="ProfileCard.Card"
     >
       <List>
         {error && (
           <Typography
             variant="subtitle1"
             color="red"
+            data-testid="ProfileCard.Error"
           >
             {error}
           </Typography>
@@ -69,12 +74,14 @@ const ProfileCard = memo((props: ProfileCardProps) => {
           <ListItemText
             primary="Пользователь:"
             secondary={data?.userName}
+            data-testid="ProfileCard.UserName"
           />
         </ListItem>
         <ListItem>
           <ListItemText
             primary="Почта:"
             secondary={data?.email}
+            data-testid="ProfileCard.UserEmail"
           />
         </ListItem>
       </List>

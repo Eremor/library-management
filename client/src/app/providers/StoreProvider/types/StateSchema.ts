@@ -14,7 +14,7 @@ import { LoanSchema } from 'entities/Loan';
 import { UserSchema } from 'entities/User';
 
 export interface StateSchema {
-  user?: UserSchema;
+  user: UserSchema;
   login?: LoginSchema;
   book?: BookSchema;
   loan?: LoanSchema;

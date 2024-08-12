@@ -30,6 +30,7 @@ export default defineConfig({
         ...coverageConfigDefaults.exclude,
         '*/**/index.ts',
         '*/**/types/*',
+        '*/**/const/*',
         '*/app/*',
         '*/main.tsx'
       ]
