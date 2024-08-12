@@ -67,6 +67,7 @@ const AddNewBookModal = memo((props: AddNewBookModalProps) => {
       modalTitle="Добавить новую книгу"
       open={isOpen}
       onClose={onCloseModal}
+      data-testid="AddNewBook.Modal"
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -93,6 +94,7 @@ const AddNewBookModal = memo((props: AddNewBookModalProps) => {
               })}
               error={!!errors.title}
               helperText={errors.title && 'Необходимо указать название книги'}
+              data-testid="AddNewBookModal.Title"
             />
           )}
         />
@@ -111,6 +113,7 @@ const AddNewBookModal = memo((props: AddNewBookModalProps) => {
               })}
               error={!!errors.author}
               helperText={errors.author && 'Необходимо указать автора'}
+              data-testid="AddNewBookModal.Author"
             />
           )}
         />
@@ -133,6 +136,7 @@ const AddNewBookModal = memo((props: AddNewBookModalProps) => {
               helperText={
                 errors.publicYear && 'Год публикации может быть в диапозоне с 1900 по текущий год'
               }
+              data-testid="AddNewBookModal.Year"
             />
           )}
         />
@@ -153,6 +157,7 @@ const AddNewBookModal = memo((props: AddNewBookModalProps) => {
               helperText={errors.genres
                 ? 'Необходимо указать хотя бы один жанр'
                 : 'Если жанров много, то укажите их через запятую'}
+              data-testid="AddNewBookModal.Genres"
             />
           )}
         />
@@ -165,10 +170,14 @@ const AddNewBookModal = memo((props: AddNewBookModalProps) => {
             type="submit"
             variant="contained"
             disabled={!!errors.title || !!errors.author || !!errors.publicYear || !!errors.genres}
+            data-testid="AddNewBookModal.SubmitBtn"
           >
             Добавить
           </Button>
-          <Button onClick={onCloseModal}>
+          <Button
+            onClick={onCloseModal}
+            data-testid="AddNewBookModal.CloseBtn"
+          >
             Отмена
           </Button>
         </Stack>

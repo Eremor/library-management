@@ -28,6 +28,7 @@ const AddNewBook = memo((props: AddNewBookProps) => {
         sx={{
           flexShrink: 1,
         }}
+        data-testid="AddNewBook.Button"
       >
         Добавить новую книгу
       </Button>
@@ -35,6 +36,7 @@ const AddNewBook = memo((props: AddNewBookProps) => {
         isOpen={isOpen}
         onClose={onCloseModal}
         onSuccess={sendNewBookData}
+        // data-testid="AddNewBook.Modal"
       />
     </>
   );
