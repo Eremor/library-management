@@ -34,7 +34,10 @@ const AvatarButton = memo(() => {
 
   return (
     <>
-      <IconButton onClick={handleOpenMenu}>
+      <IconButton
+        onClick={handleOpenMenu}
+        data-testid="AvatarButton.IconBtn"
+      >
         <SvgIcon
           sx={{
             fill: '#fff',
@@ -61,9 +64,11 @@ const AvatarButton = memo(() => {
         }}
         open={Boolean(anchorElement)}
         onClose={handleCloseMenu}
+        data-testid="AvatarButton.Menu"
       >
         <MenuItem
           onClick={handleCloseMenu}
+          data-testid="AvatarButton.ProfileBtn"
         >
           <AppLink
             to={`${RoutePath.profile}${authData?.id}`}
@@ -72,7 +77,10 @@ const AvatarButton = memo(() => {
             Профиль
           </AppLink>
         </MenuItem>
-        <MenuItem onClick={onLogout}>
+        <MenuItem
+          onClick={onLogout}
+          data-testid="AvatarButton.LogoutBtn"
+        >
           Выйти
         </MenuItem>
       </Menu>

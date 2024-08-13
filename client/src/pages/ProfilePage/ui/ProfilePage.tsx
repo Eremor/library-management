@@ -8,7 +8,9 @@ import { EditableProfileCard } from 'features/EditableProfile';
 const ProfilePage = memo(() => {
   const { id } = useParams<{ id: string }>();
   return (
-    <Page>
+    <Page
+      data-testid="ProfilePage"
+    >
       <Container
         sx={{
           display: 'flex',
